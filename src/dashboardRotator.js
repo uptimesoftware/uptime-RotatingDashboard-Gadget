@@ -1,22 +1,18 @@
 
 $("#save").click(function() {
     $(this).prop("disabled", true);
+
     var settings = {
-        iframeUrl: $.trim($("#iframeUrl").val()),
+        urls: $("#dashboards").val(),
         scroll: $("#scroll").val()
     };
     settings.refreshInterval = $("#refreshRate").val();
-    if (!settings.iframeUrl) {
+    if (!settings.urls) {
         $("#error").empty();
         uptimeErrorFormatter.getErrorBox("Please enter a URL", "No URL specified").appendTo('#error');
         $("#error").slideDown();
         $("#save").prop("disabled", false);
-    } else if (settings.iframeUrl) {
-        $("#error").empty();
-        uptimeErrorFormatter.getErrorBox("Please enter a valid URL", "Invalid URL").appendTo('#error');
-        $("#error").slideDown();
-        $("#save").prop("disabled", false);
-    } else {
+    } else if (settings.urls) {
         $("#error").empty().slideUp();
         uptimeGadget.saveSettings(settings).then(doRender, doError);
     }
@@ -54,11 +50,16 @@ uptimeGadget.registerOnLoadHandler(function(onLoadData) {
 
 
 function editSettings(settings) {
+    $("#scroll").chosen();
+    $("#dashboards").chosen();
+
+
     $("#save").prop("disabled", false);
     $("#error").empty().slideUp();
     $("#dest").hide();
     $("#edit").show();
-    $("#iframeUrl").val(settings ? settings.iframeUrl : "").focus();
+    $("#dashboards").val(settings ? settings.urls : "");
+    $("#dashboards").trigger("liszt:updated");
     $("#scroll").val(settings ? settings.scroll : "auto");
     if (settings && settings.refreshInterval) {
         $("#refreshRate").val(settings.refreshInterval);
@@ -66,21 +67,29 @@ function editSettings(settings) {
         $("#refreshRate").val(-1);
     }
 }
+
+
 function doRender(settings) {
     var dest = $("#dest");
-    if (settings && settings.iframeUrl) {
+    var dashboard_counter = 0;
+    if (settings && settings.urls) {
         $("#edit").hide();
         dest.empty()
                 .css("background-position", "-9999px -9999px")
                 .append($('<iframe id="frame"></iframe>')
-                .prop("src", settings.iframeUrl)
+                .prop("src", settings.urls[dashboard_counter])
                 .prop("scrolling", settings.scroll)
                 .height(dest.data("dimensions").height)
                 .width(dest.data("dimensions").width))
                 .show();
         if (settings.refreshInterval && settings.refreshInterval > 0) {
             dest.data("interval", setInterval(function() {
-                $("#frame").prop("src", settings.iframeUrl);
+                dashboard_counter++;
+                if (dashboard_counter > settings.urls.length)
+                {
+                    dashboard_counter = 0;
+                }
+                $("#frame").prop("src", settings.urls[dashboard_counter]);
             }, settings.refreshInterval * 1000));
         }
     } else {
