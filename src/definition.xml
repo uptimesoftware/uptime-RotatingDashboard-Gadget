@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Module>
-	<ModulePrefs title="Display URL" description="Use this gadget to load a webpage into your dashboard." thumbnail="displayUrlThm.png"/>
+	<ModulePrefs title="Rotating Dashboards" description="Rotate your dashboards." thumbnail="displayUrlThm.png"/>
 	<gadget_version>
 		<%= pkg.gadget_version %>
 	</gadget_version>

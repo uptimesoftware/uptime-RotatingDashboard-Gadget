@@ -1,7 +1,7 @@
 {
-  "name": "uptime.DisplayUrl",
+  "name": "uptime.RotatingDashboards",
   "version": "1.0.0",
-  "description": "Use this gadget to load a webpage into your dashboard.",
+  "description": "Rotate your Dashboards.",
   "main": "src/definition.xml",
   "repository": {
     "type": "git",
