@@ -94,7 +94,7 @@ function editSettings(settings) {
     if (settings && settings.refreshInterval) {
         $("#refreshRate").val(settings.refreshInterval);
     } else {
-        $("#refreshRate").val(-1);
+        $("#refreshRate").val(10);
     }
     $("#refreshRate").trigger("liszt:updated");
     $("#scroll").trigger("liszt:updated");
