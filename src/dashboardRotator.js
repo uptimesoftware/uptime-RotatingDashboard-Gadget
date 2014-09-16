@@ -92,6 +92,13 @@ function doRender(settings) {
                 $("#frame").prop("src", settings.urls[dashboard_counter]);
             }, settings.refreshInterval * 1000));
         }
+
+            $('#frame').load(function() {
+                    $("#frame").contents().find("#nav").hide();
+                    $("#frame").contents().find("#navTabs").hide();
+
+            });
+
     } else {
         editSettings(settings);
     }
