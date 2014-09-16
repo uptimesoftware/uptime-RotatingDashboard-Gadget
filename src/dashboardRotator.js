@@ -9,7 +9,7 @@ $("#save").click(function() {
     settings.refreshInterval = $("#refreshRate").val();
     if (!settings.urls) {
         $("#error").empty();
-        uptimeErrorFormatter.getErrorBox("Please enter a URL", "No URL specified").appendTo('#error');
+        uptimeErrorFormatter.getErrorBox("Please choose some dashboards", "No dashboards selected").appendTo('#error');
         $("#error").slideDown();
         $("#save").prop("disabled", false);
     } else if (settings.urls) {
@@ -49,23 +49,56 @@ uptimeGadget.registerOnLoadHandler(function(onLoadData) {
 });
 
 
+function populateDashboardSelector(selected_dashboards) {
+
+    var DashboardSelector = $("#dashboards");
+    DashboardSelector.chosen();
+    DashboardSelector.empty().append("<option />").val(-1).text("Loading...");
+    DashboardSelector.trigger("liszt:updated");
+
+
+    $.ajax("/uptime/dashboards/getTabs", {
+        cache : false 
+    }).done(function(data, textStatus, jqXHR) {
+        console.log(data);
+        if ( data.status.value === "SUCCESS")
+        {                
+            $.each(data.tabs, function() {
+                var tab_name = this.name;
+                console.log(tab_name);
+                var tab_url = "/main.php?page=Dashboards&tab=" + encodeURIComponent(tab_name);
+                console.log(tab_url)
+                DashboardSelector.append($("<option />").val(tab_url).text(tab_name));
+            });
+            DashboardSelector.val(selected_dashboards);
+            DashboardSelector.trigger("liszt:updated");
+        }
+    }).fail(function(jqXHR, textStatus, errorThrown) {
+        alert("hey!");
+    });
+}
+
+
 function editSettings(settings) {
     $("#scroll").chosen();
-    $("#dashboards").chosen();
+
+    $("#refreshRate").chosen();
 
 
     $("#save").prop("disabled", false);
     $("#error").empty().slideUp();
     $("#dest").hide();
     $("#edit").show();
-    $("#dashboards").val(settings ? settings.urls : "");
-    $("#dashboards").trigger("liszt:updated");
+    populateDashboardSelector(settings ? settings.urls : "");
     $("#scroll").val(settings ? settings.scroll : "auto");
     if (settings && settings.refreshInterval) {
         $("#refreshRate").val(settings.refreshInterval);
     } else {
         $("#refreshRate").val(-1);
     }
+    $("#refreshRate").trigger("liszt:updated");
+    $("#scroll").trigger("liszt:updated");
+
 }
 
 
@@ -92,6 +125,13 @@ function doRender(settings) {
                 $("#frame").prop("src", settings.urls[dashboard_counter]);
             }, settings.refreshInterval * 1000));
         }
+
+            $('#frame').load(function() {
+                    $("#frame").contents().find("#nav").hide();
+                    $("#frame").contents().find("#navTabs").hide();
+
+            });
+
     } else {
         editSettings(settings);
     }
