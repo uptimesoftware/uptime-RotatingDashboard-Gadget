@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Module>
-	<ModulePrefs title="Rotating Dashboards" description="Rotate through your dashboards." thumbnail="displayUrlThm.png"/>
+	<ModulePrefs title="Rotating Dashboards" description="Rotate through your up.time dashboards." thumbnail="displayUrlThm.png"/>
 	<gadget_version>
 		<%= pkg.gadget_version %>
 	</gadget_version>
