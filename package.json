@@ -1,7 +1,7 @@
 {
   "name": "uptime.RotatingDashboards",
-  "version": "1.0.0",
-  "description": "Rotate through the stock dashboards.",
+  "version": "2.0.0",
+  "description": "Rotate through your up.time dashboards.",
   "main": "src/definition.xml",
   "repository": {
     "type": "git",

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Module>
-	<ModulePrefs title="Rotating Dashboards" description="Rotate through the stock dashboards." thumbnail="displayUrlThm.png"/>
+	<ModulePrefs title="Rotating Dashboards" description="Rotate through your up.time dashboards." thumbnail="displayUrlThm.png"/>
 	<gadget_version>
 		<%= pkg.gadget_version %>
 	</gadget_version>
@@ -52,7 +52,7 @@
 			clear: both;
 		}
 		select {
-			width: 80px;
+			width: 160px;
 		}
 		input[type=text] {
 			width: 100%;
@@ -72,14 +72,7 @@
 	<div id="dest"></div>
 	<div id="edit">
 		<label for="dashboards">Dashboards:</label>
-		<select id="dashboards" multiple="true">
-			<option value="/main.php?section=GlobalScanMainPageGroups&subsection=list">Global Scan</option>
-			<option value="/main.php?section=GlobalScanResourceScan&subsection=list">Resource Scan</option>
-			<option value="/main.php?section=GlobalScanSlas&subsection=list">SLAs</option>
-			<option value="/main.php?section=GlobalScanApplications&subsection=list">Applications</option>
-			<option value="/main.php?section=GlobalScanNetworkDevices&subsection=list">Network Scan</option>
-			<option value="/main.php?section=GlobalScanAllEntities&subsection=list">All Entities</option>
-			<option value="/main.php?section=GlobalScanAllServices&subsection=list">All Services</option>
+		<select id="dashboards" multiple="true" data-placeholder="Select some dashboards">
 		</select>
 		<label for="scroll">Scroll bars:</label>
 		<select id="scroll">
