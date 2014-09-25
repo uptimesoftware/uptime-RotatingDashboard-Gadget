@@ -80,16 +80,15 @@
 			<option value="yes">Always</option>
 			<option value="no">Never</option>
 		</select>
-		<label for="refreshRate">Refresh Rate:</label>
+		<label for="refreshRate">Page Rotate Rate:</label>
 		<select id="refreshRate" name="refreshRate">
 			<option value="5">5s</option>
+			<option value="10">10s</option>
+			<option value="15">15s</option>
+			<option value="20">20s</option>
 			<option value="30">30s</option>
 			<option value="60">1m</option>
-			<option value="300">5m</option>
-			<option value="600">10m</option>
-			<option value="900">15m</option>
-			<option value="3600">1h</option>
-			<option value="-1">Never</option>
+			<option value="120">2m</option>
 		</select>
 		<button id="save">Save</button>
 	</div>
