@@ -138,7 +138,7 @@ function doRender(settings) {
 }
 function doError(status) {
     $("#error").empty();
-    uptimeErrorFormatter.getErrorBox(status, "Error communicating with up.time").appendTo('#error');
+    uptimeErrorFormatter.getErrorBox(status, "Error communicating with Uptime").appendTo('#error');
     $("#error").slideDown();
     $("#save").prop("disabled", false);
 }
