@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Module>
-	<ModulePrefs title="Rotating Dashboards" description="Rotate through your up.time dashboards." thumbnail="displayUrlThm.png"/>
+	<ModulePrefs title="Rotating Dashboards" description="Rotate through your Uptime dashboards." thumbnail="displayUrlThm.png"/>
 	<gadget_version>
 		<%= pkg.gadget_version %>
 	</gadget_version>
 	<grid_info>
 		<supported_versions>
-			7.3,7.4,7.5,7.6,7.7
+			7.3,7.4,7.5,7.6,7.7,7.8
 		</supported_versions>
 		<supported_platforms>
 			windows,linux
