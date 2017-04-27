@@ -2,7 +2,7 @@
 <Module>
 	<ModulePrefs title="Rotating Dashboards" description="Rotate through your Uptime dashboards." thumbnail="displayUrlThm.png"/>
 	<gadget_version>
-		2.3.0
+		2.3
 	</gadget_version>
 	<grid_info>
 		<supported_versions>
